@@ -19,9 +19,9 @@ while opc != 0:
       "2 - CONSULTAR PRODUTOS CADASTRADOS\n",
       "3 - EDITAR PRODUTOS\n",
       "0 - SAIR")
-    opc = int(input(""))
+    opc = (input(""))
 #------------------------------------------------------------------
-    if opc == 1:
+    if opc == "1":
         opc2 = 1
         while opc2 == 1:
             print("\n---- CADASTRAR PRODUTO ----")
@@ -66,9 +66,10 @@ while opc != 0:
                     print("Opção invalida")
             
 
-    elif opc == 3:
+    elif opc == "3":
         print("")
-    elif opc == 0:
-        print("")
-    else:
+    elif opc == "0":
+        print(f"ATÉ A PRÓXIMA, {user} ;)")
+        break
+    elif not opc.isdigit():
         print("OPÇÃO INEXISTENTE! DIGITE NOVAMENTE")
