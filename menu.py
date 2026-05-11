@@ -10,9 +10,16 @@ class Produto:
         self.nome = nome
         self.quantidade = quantidade
         self.preco = preco
+
+     def mostrar(self):
+        print(f"Tipo: {self.tipo}")
+        print(f"Nome: {self.nome}")
+        print(f"Quantidade: {self.quantidade}")
+        print(f"Preço: {self.preco}\n")
 #------------------------------------------------------------------
 
 while opc != 0:
+
     print(f"--- BEM VINDO {user.upper()} ---\n")
     print("----- MENU DO ESTOQUE -----\n",
       "1 - CADASTRAR PRODUTOS\n",
@@ -66,8 +73,10 @@ while opc != 0:
                     print("Opção invalida")
             
 
-    elif opc == "3":
-        print("")
+    elif opc == "2":
+        for produto in estoque:
+            produto.mostrar()
+
     elif opc == "0":
         print(f"ATÉ A PRÓXIMA, {user} ;)")
         break
