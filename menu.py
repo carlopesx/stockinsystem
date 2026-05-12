@@ -1,21 +1,10 @@
 #Menu onde irá ocorrer a navegação do sistema
 
+from produto import Produto
+
 user = "carlos"
 opc = 1
 estoque = [] # ------
-
-class Produto:
-     def __init__(self, tipo, nome, quantidade, preco):
-        self.tipo = tipo
-        self.nome = nome
-        self.quantidade = quantidade
-        self.preco = preco
-
-     def mostrar(self):
-        print(f"Tipo: {self.tipo}")
-        print(f"Nome: {self.nome}")
-        print(f"Quantidade: {self.quantidade}")
-        print(f"Preço: {self.preco}\n")
 #------------------------------------------------------------------
 
 while opc != 0:
@@ -74,11 +63,17 @@ while opc != 0:
             
 
     elif opc == "2":
+        print("----- PRODUTOS -----")
         for produto in estoque:
             produto.mostrar()
+#------------------------------------------------------------------
 
+    elif opc == 3:
+        print("")
+#------------------------------------------------------------------
     elif opc == "0":
         print(f"ATÉ A PRÓXIMA, {user} ;)")
         break
+#------------------------------------------------------------------
     elif not opc.isdigit():
         print("OPÇÃO INEXISTENTE! DIGITE NOVAMENTE")
