@@ -23,6 +23,15 @@ while opc != 0:
             print("\n---- CADASTRAR PRODUTO ----")
             print("--- INFORME ---")
             tipo = input("Tipo/categoria: ")
+
+            id = "0"
+            while id != id.isdigit:
+                id = input("Id: ")
+                if not id.isdigit():
+                    print("Dado inválido!")
+                else:
+                    break
+
             nome = input("nome: ") # ------
 
             quantidade = "0"
@@ -41,7 +50,7 @@ while opc != 0:
                 else:
                     break
             print("")
-            produto = Produto(tipo, nome, quantidade, preco)
+            produto = Produto(tipo, id, nome, quantidade, preco)
             estoque.append(produto)
             print(f"PRODUTO CADASTRADO!")
             print(f"Tipo: {produto.nome},", f"Nome: {produto.tipo},", f"Quantidade: {produto.quantidade},", f"Preco: {produto.preco}")
@@ -68,8 +77,9 @@ while opc != 0:
             produto.mostrar()
 #------------------------------------------------------------------
 
-    elif opc == 3:
-        print("")
+    elif opc == "3":
+        print("----- EDITAR PRODUTO -----")
+        Produto.editar_produto(estoque)
 #------------------------------------------------------------------
     elif opc == "0":
         print(f"ATÉ A PRÓXIMA, {user} ;)")
