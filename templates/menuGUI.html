@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Estoque</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background-color: #f9f9f9; }
+        .secao { background: white; padding: 20px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .erro { color: red; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        table, th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <h1>--- BEM VINDO {{ user.upper() }} ---</h1>
+
+    {% if erro %}
+        <p class="erro">{{ erro }}</p>
+    {% endif %}
+
+    <div class="secao">
+        <h2>1 - Cadastrar Produto</h2>
+        <form action="/cadastrar" method="POST">
+            <input type="text" name="tipo" placeholder="Tipo/Categoria" required>
+            <input type="text" name="id" placeholder="ID (Somente números)" required>
+            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="text" name="quantidade" placeholder="Quantidade" required>
+            <input type="text" name="preco" placeholder="Preço" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    <div class="secao">
+        <h2>3 - Editar Produto por ID</h2>
+        <form action="/editar" method="POST">
+            <input type="text" name="id_busca" placeholder="ID do produto para editar" required><br><br>
+            <p><small>Deixe os campos abaixo em branco se quiser manter os valores atuais:</small></p>
+            <input type="text" name="novo_nome" placeholder="Novo Nome">
+            <input type="text" name="novo_tipo" placeholder="Novo Tipo">
+            <input type="text" name="nova_qtd" placeholder="Nova Qtd">
+            <input type="text" name="novo_preco" placeholder="Novo Preço">
+            <button type="submit">Atualizar</button>
+        </form>
+    </div>
+
+    <div class="secao">
+        <h2>2 - Consulta de Produtos Cadastrados</h2>
+        {% if estoque %}
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Tipo/Categoria</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                </tr>
+                {% for produto in estoque %}
+                <tr>
+                    <td>{{ produto.id }}</td>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.tipo }}</td>
+                    <td>{{ produto.quantidade }}</td>
+                    <td>R$ {{ produto.preco }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>Nenhum produto cadastrado no estoque.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
